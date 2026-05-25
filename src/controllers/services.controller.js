@@ -114,7 +114,7 @@ const deleteServiceById = async (req, res) => {
 
   try {
     //const deletedService = await Service.findByIdAndDelete(serviceId);
-    const deletedService = await deleteServiceById(serviceId);
+    const deletedService = await Service.deleteServiceById(serviceId);
 
     if (!deletedService) {
       res.status(404).json({
