@@ -58,7 +58,7 @@ const addService = async (entry) => {
 };
 
 const updateServiceById = async (id, entry) => {
-  const { titulo, descripcion, categoria } = entry;
+  const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
   try {
     client = await pool.connect();

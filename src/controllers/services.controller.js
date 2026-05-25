@@ -84,7 +84,7 @@ const updateServiceById = async (req, res) => {
     //   precio: req.body.precio
     // }, { returnDocument: 'after' });
 
-    const updatedService = await updateServiceById(serviceId, req.body);
+    const updatedService = await Service.updateServiceById(serviceId, req.body);
 
     if (!updatedService) {
       res.status(404).json({
