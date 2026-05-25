@@ -1,8 +1,10 @@
-const Service = require("../models/service.model");
+//const Service = require("../models/service.model");
+const Service = require("../models/service.postgres");
 
 const getServices = async (req, res) => {
   try {
-    const services = await Service.find();
+    //const services = await Service.find();
+    const services = await Service.getServices();
 
     res.status(200).json({
       ok: true,
@@ -23,7 +25,8 @@ const getServiceById = async (req, res) => {
   const serviceId = req.params.id;
 
   try {
-    const service = await Service.findById(serviceId);
+    //const service = await Service.findById(serviceId);
+    const service = await Service.getServiceById(serviceId);
 
     if (!service) {
       res.status(404).json({
@@ -50,9 +53,11 @@ const getServiceById = async (req, res) => {
 
 const addService = async (req, res) => {
   try {
-    const newService = new Service(req.body);
+    //const newService = new Service(req.body);
 
-    const resp = await newService.save();
+    //const resp = await newService.save();
+
+    const resp = await addService(req.body);
 
     res.status(201).json({
       ok: true,
@@ -73,11 +78,13 @@ const updateServiceById = async (req, res) => {
   const serviceId = req.params.id;
 
   try {
-    const updatedService = await Service.findByIdAndUpdate(serviceId, {
-      nombre: req.body.nombre,
-      descripcion: req.body.descripcion,
-      precio: req.body.precio
-    }, { returnDocument: 'after' });
+    // const updatedService = await Service.findByIdAndUpdate(serviceId, {
+    //   nombre: req.body.nombre,
+    //   descripcion: req.body.descripcion,
+    //   precio: req.body.precio
+    // }, { returnDocument: 'after' });
+
+    const updatedService = await updateServiceById(serviceId, req.body);
 
     if (!updatedService) {
       res.status(404).json({
@@ -106,7 +113,8 @@ const deleteServiceById = async (req, res) => {
   const serviceId = req.params.id;
 
   try {
-    const deletedService = await Service.findByIdAndDelete(serviceId);
+    //const deletedService = await Service.findByIdAndDelete(serviceId);
+    const deletedService = await deleteServiceById(serviceId);
 
     if (!deletedService) {
       res.status(404).json({
