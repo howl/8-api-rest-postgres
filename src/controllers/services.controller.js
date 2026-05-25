@@ -57,12 +57,12 @@ const addService = async (req, res) => {
 
     //const resp = await newService.save();
 
-    const resp = await addService(req.body);
+    const resp = await Service.addService(req.body);
 
     res.status(201).json({
       ok: true,
       msg: "Service created",
-      data: newService
+      data: resp
     });
   } catch (error) {
     console.log(error);

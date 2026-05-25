@@ -8,7 +8,7 @@ const pool = new Pool({
   database: process.env.PG_DB_NAME
 });
 
-const getServices = () => {
+const getServices = async () => {
   let client, result;
   try {
     client = await pool.connect();
@@ -41,7 +41,7 @@ const getServiceById = async (id) => {
 };
 
 const addService = async (entry) => {
-  const { titulo, descripcion, categoria } = entry;
+  const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
   try {
     client = await pool.connect();
