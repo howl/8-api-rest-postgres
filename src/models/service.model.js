@@ -10,9 +10,15 @@ const serviceSchema = new Schema({
   descripcion: {
     type: String,
     trim: true,
-    enum: ["Asistencia", "Entretenimiento", "Autonomía", "Educación"],
     required: true,
     maxLength: 100
+  },
+  categoria: {
+    type: String,
+    trim: true,
+    enum: ["Asistencia", "Entretenimiento", "Autonomía", "Educación"],
+    required: true,
+    maxLength: 15
   },
   precio: {
     type: Number,
