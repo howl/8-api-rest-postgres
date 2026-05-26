@@ -3,8 +3,7 @@ const Service = require("../models/service.postgres");
 
 const getServices = async (req, res) => {
   try {
-    //const services = await Service.find();
-    const services = await Service.getServices();
+    const services = await Service.find();
 
     res.status(200).json({
       ok: true,
@@ -25,8 +24,7 @@ const getServiceById = async (req, res) => {
   const serviceId = req.params.id;
 
   try {
-    //const service = await Service.findById(serviceId);
-    const service = await Service.getServiceById(serviceId);
+    const service = await Service.findById(serviceId);
 
     if (!service) {
       res.status(404).json({
@@ -57,7 +55,7 @@ const addService = async (req, res) => {
 
     //const resp = await newService.save();
 
-    const resp = await Service.addService(req.body);
+    const resp = await Service.save(req.body);
 
     res.status(201).json({
       ok: true,
@@ -84,7 +82,12 @@ const updateServiceById = async (req, res) => {
     //   precio: req.body.precio
     // }, { returnDocument: 'after' });
 
-    const updatedService = await Service.updateServiceById(serviceId, req.body);
+    const updatedService = await Service.findByIdAndUpdate(serviceId, {
+      nombre: req.body.nombre,
+      descripcion: req.body.descripcion,
+      categoria: req.body.categoria,
+      precio: req.body.precio
+    }, { returnDocument: 'after' });
 
     if (!updatedService) {
       res.status(404).json({
@@ -113,8 +116,7 @@ const deleteServiceById = async (req, res) => {
   const serviceId = req.params.id;
 
   try {
-    //const deletedService = await Service.findByIdAndDelete(serviceId);
-    const deletedService = await Service.deleteServiceById(serviceId);
+    const deletedService = await Service.findByIdAndDelete(serviceId);
 
     if (!deletedService) {
       res.status(404).json({

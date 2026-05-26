@@ -8,7 +8,7 @@ const pool = new Pool({
   database: process.env.PG_DB_NAME
 });
 
-const getServices = async () => {
+const find = async () => {
   let client, result;
   try {
     client = await pool.connect();
@@ -24,7 +24,7 @@ const getServices = async () => {
   return result;
 };
 
-const getServiceById = async (id) => {
+const findById = async (id) => {
   let client, result;
   try {
     client = await pool.connect();
@@ -40,7 +40,7 @@ const getServiceById = async (id) => {
   return result;
 };
 
-const addService = async (entry) => {
+const save = async (entry) => {
   const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
   try {
@@ -57,7 +57,7 @@ const addService = async (entry) => {
   return result;
 };
 
-const updateServiceById = async (id, entry) => {
+const findByIdAndUpdate = async (id, entry) => {
   const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
   try {
@@ -74,7 +74,7 @@ const updateServiceById = async (id, entry) => {
   return result;
 };
 
-const deleteServiceById = async (id) => {
+const findByIdAndDelete = async (id) => {
   let client, result;
   try {
     client = await pool.connect();
@@ -90,4 +90,4 @@ const deleteServiceById = async (id) => {
   return result;
 };
 
-module.exports = { getServices, getServiceById, addService, updateServiceById, deleteServiceById };
+module.exports = { find, findById, save, findByIdAndUpdate, findByIdAndDelete };
