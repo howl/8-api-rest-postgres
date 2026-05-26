@@ -57,6 +57,7 @@ const save = async (entry) => {
   return result;
 };
 
+// TODO: Check first if service exists.
 const findByIdAndUpdate = async (id, entry) => {
   const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
@@ -74,6 +75,7 @@ const findByIdAndUpdate = async (id, entry) => {
   return result;
 };
 
+// TODO: Check first if service exists.
 const findByIdAndDelete = async (id) => {
   let client, result;
   try {
