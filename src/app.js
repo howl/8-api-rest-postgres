@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 
-dbConnect().catch((error) => { console.log(error) });
+//dbConnect().catch((error) => { console.log(error) });
 
 app.use(`${URL_BASE}/services`, require("./routes/services.route"));
 
