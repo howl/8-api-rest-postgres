@@ -37,7 +37,7 @@ const findById = async (id) => {
   } finally {
     client.release();
   }
-  return result;
+  return (result.length) ? result : null;
 };
 
 const save = async (entry) => {
@@ -57,7 +57,6 @@ const save = async (entry) => {
   return result;
 };
 
-// TODO: Check first if service exists.
 const findByIdAndUpdate = async (id, entry) => {
   const { nombre: titulo, descripcion, categoria } = entry;
   let client, result;
@@ -72,10 +71,9 @@ const findByIdAndUpdate = async (id, entry) => {
   } finally {
     client.release();
   }
-  return result;
+  return (result.length) ? result : null;
 };
 
-// TODO: Check first if service exists.
 const findByIdAndDelete = async (id) => {
   let client, result;
   try {
@@ -89,7 +87,7 @@ const findByIdAndDelete = async (id) => {
   } finally {
     client.release();
   }
-  return result;
+  return (result.length) ? result : null;
 };
 
 module.exports = { find, findById, save, findByIdAndUpdate, findByIdAndDelete };
